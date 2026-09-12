@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.git = {
@@ -27,6 +27,12 @@
         ci = "commit";
         lg = "log --graph --oneline --decorate --all";
       };
+    };
+
+    signing = {
+      format = "ssh";
+      key = config.sops.secrets."ssh/github".path;
+      signByDefault = true;
     };
   };
 }
