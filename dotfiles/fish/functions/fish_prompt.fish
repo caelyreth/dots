@@ -74,7 +74,7 @@ function fish_prompt --description 'Two-line colored prompt'
     # status
     set_color normal
     if test -n "$prompt_status"
-        echo -n ' ' $prompt_status
+        echo -n -s ' ' $prompt_status
     end
 
     # second line
