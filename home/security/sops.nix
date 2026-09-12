@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     sops
     age
-    age-plugin-se
   ];
 
   sops = {
@@ -14,7 +13,6 @@
     age = {
       keyFile = "${config.home.homeDirectory}/Library/Application Support/sops/age/keys.txt";
       generateKey = false;
-      plugins = [ pkgs.age-plugin-se ];
     };
 
     keepGenerations = 1;
