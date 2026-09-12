@@ -11,5 +11,7 @@
   imports = [
     ./fish.nix
     ./git.nix
+    ./secrets.nix
+    ./ssh.nix
   ];
 }

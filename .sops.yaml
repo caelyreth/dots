@@ -1,0 +1,10 @@
+keys:
+  - &mac age1se1qgdzah4ymhvs9845h6mk8ta8kqn7x5vlr0ae8g7nd3a2zeakf5gngfeufrs
+  - &recovery age1uuc265dsjsumul0lgrsvslwjpgmav3wqsk3u33jq28j7hrvuygfqc0d2ay
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+        - *mac
+        - *recovery

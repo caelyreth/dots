@@ -15,9 +15,14 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = { self, nix-darwin, nixpkgs, home-manager, sops-nix, ... }:
   let
     shared = {
       user = "caelyreth";
@@ -42,6 +47,9 @@
             useUserPackages = true;
             extraSpecialArgs = { inherit shared; };
             users.${shared.user} = import ./home;
+            sharedModules = [
+              sops-nix.homeManagerModules.sops
+            ];
           };
         }
       ];
