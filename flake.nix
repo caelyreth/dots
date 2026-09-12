@@ -46,7 +46,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = { inherit shared; };
-            users.${shared.user} = import ./home;
+            users.${shared.user} = import ./modules;
             sharedModules = [
               sops-nix.homeManagerModules.sops
             ];
