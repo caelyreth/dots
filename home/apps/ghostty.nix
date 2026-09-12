@@ -11,8 +11,13 @@ in
     enableFishIntegration = true;
 
     settings = {
+      # font
+      font-size = 14;
       font-family = "Maple Mono NF CN";
+      # style
       theme = palette.name;
+      window-padding-x = 10;
+      window-padding-y = 4;
     };
 
     themes.${palette.name} = {
