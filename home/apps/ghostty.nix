@@ -6,6 +6,10 @@
     # Ghostty itself is managed outside of Home Manager.
     package = null;
     enableFishIntegration = true;
+
+    settings = {
+      font-family = "Maple Mono NF CN";
+    };
   };
 
   programs.fish.completions.ghostty = ''

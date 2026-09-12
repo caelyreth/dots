@@ -1,6 +1,11 @@
 { pkgs, machine, ... }:
 
 {
+  imports = [
+    ./fonts.nix
+    ./shell.nix
+  ];
+
   system.stateVersion = 7;
 
   nix = {
@@ -31,7 +36,6 @@
   users.users.${machine.username} = {
     name = machine.username;
     home = "/Users/${machine.username}";
-    shell = pkgs.fish;
   };
 
   networking = {
@@ -45,14 +49,4 @@
     reattach = true;
   };
 
-  programs.fish.enable = true;
-  environment.shells = [ pkgs.fish ];
-
-  # Ensure the existing macOS account uses Fish as its login shell.
-  system.activationScripts.postActivation.text = ''
-    /usr/bin/dscl . -create \
-      /Users/${machine.username} \
-      UserShell \
-      /run/current-system/sw/bin/fish
-  '';
 }

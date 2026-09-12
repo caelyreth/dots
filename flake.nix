@@ -46,7 +46,7 @@
 
         modules = [
           # System-wide configuration.
-          ./darwin.nix
+          ./darwin
 
           # Home Manager configuration.
           home-manager.darwinModules.home-manager
