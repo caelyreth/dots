@@ -9,4 +9,9 @@
       g = "git";
     };
   };
+
+  xdg.configFile."fish/functions" = {
+    source = ../../dotfiles/fish/functions;
+    recursive = true;
+  };
 }
