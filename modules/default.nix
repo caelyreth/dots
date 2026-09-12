@@ -23,5 +23,5 @@ in
 
   imports = [
     ./secrets.nix
-  ] ++ load ./tools;
+  ] ++ load ./tools ++ load ./apps;
 }
