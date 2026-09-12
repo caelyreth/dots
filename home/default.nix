@@ -5,6 +5,7 @@
     ./programs/fish.nix
     ./programs/git.nix
     ./programs/ssh.nix
+    ./programs/devenv.nix
     ./security/sops.nix
   ];
 
