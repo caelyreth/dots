@@ -26,48 +26,44 @@
     };
   };
 
-  outputs = inputs@{
-    self,
-    nix-darwin,
-    nixpkgs,
-    home-manager,
-    sops-nix,
-    llm-agents,
-    ...
-  }:
-  let
-    shared = {
-      user = "caelyreth";
-      host = "Unwritten";
-      arch = "aarch64-darwin";
-    };
-  in
-  {
-    darwinConfigurations.${shared.host} = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit shared; };
+  outputs =
+    inputs@{
+      nix-darwin,
+      home-manager,
+      sops-nix,
+      ...
+    }:
+    let
+      machine = {
+        username = "caelyreth";
+        hostname = "Unwritten";
+        system = "aarch64-darwin";
+      };
+    in
+    {
+      darwinConfigurations.${machine.hostname} = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit machine; };
 
-      modules = [
-        # system wide configuration
-        ./darwin.nix
+        modules = [
+          # System-wide configuration.
+          ./darwin.nix
 
-        # load home-manager
-        home-manager.darwinModules.home-manager
-
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit shared;
+          # Home Manager configuration.
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs machine;
+              };
+              users.${machine.username} = import ./home;
+              sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
             };
-            users.${shared.user} = import ./modules;
-            sharedModules = [
-              sops-nix.homeManagerModules.sops
-            ];
-          };
-        }
-      ];
+          }
+        ];
+      };
     };
-  };
 }

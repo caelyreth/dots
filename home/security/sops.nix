@@ -8,18 +8,13 @@
   ];
 
   sops = {
-    defaultSopsFile = ../secrets/common.yaml;
+    defaultSopsFile = ../../secrets/common.yaml;
     defaultSopsFormat = "yaml";
 
     age = {
-      keyFile =
-        "${config.home.homeDirectory}/Library/Application Support/sops/age/keys.txt";
-
+      keyFile = "${config.home.homeDirectory}/Library/Application Support/sops/age/keys.txt";
       generateKey = false;
-
-      plugins = [
-        pkgs.age-plugin-se
-      ];
+      plugins = [ pkgs.age-plugin-se ];
     };
 
     keepGenerations = 1;

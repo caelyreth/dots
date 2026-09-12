@@ -1,4 +1,4 @@
-{ pkgs, shared, ... }:
+{ pkgs, machine, ... }:
 
 {
   system.stateVersion = 7;
@@ -26,37 +26,32 @@
     };
   };
 
-  nixpkgs.hostPlatform = shared.arch;
+  nixpkgs.hostPlatform = machine.system;
 
-  # constants
-  users.users.${shared.user} = {
-    name = shared.user;
-    home = "/Users/${shared.user}";
+  users.users.${machine.username} = {
+    name = machine.username;
+    home = "/Users/${machine.username}";
     shell = pkgs.fish;
   };
 
   networking = {
-    hostName = shared.host;
-    localHostName = shared.host;
-    computerName = shared.host;
+    hostName = machine.hostname;
+    localHostName = machine.hostname;
+    computerName = machine.hostname;
   };
 
-  # tweaks
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;
   };
 
-  # shell
   programs.fish.enable = true;
-
-  # activate fish in system level
   environment.shells = [ pkgs.fish ];
 
-  # workaround: update config database manually
+  # Ensure the existing macOS account uses Fish as its login shell.
   system.activationScripts.postActivation.text = ''
     /usr/bin/dscl . -create \
-      /Users/${shared.user} \
+      /Users/${machine.username} \
       UserShell \
       /run/current-system/sw/bin/fish
   '';

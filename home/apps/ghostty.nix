@@ -3,11 +3,11 @@
 {
   programs.ghostty = {
     enable = true;
+    # Ghostty itself is managed outside of Home Manager.
     package = null;
-    enableFishIntegration = true; # integration only
+    enableFishIntegration = true;
   };
 
-  # register completion
   programs.fish.completions.ghostty = ''
     if set -q GHOSTTY_RESOURCES_DIR
       set -l completion \
