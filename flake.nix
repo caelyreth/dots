@@ -20,9 +20,21 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+    };
   };
 
-  outputs = { self, nix-darwin, nixpkgs, home-manager, sops-nix, ... }:
+  outputs = inputs@{
+    self,
+    nix-darwin,
+    nixpkgs,
+    home-manager,
+    sops-nix,
+    llm-agents,
+    ...
+  }:
   let
     shared = {
       user = "caelyreth";
@@ -45,7 +57,10 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit shared; };
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit shared;
+            };
             users.${shared.user} = import ./modules;
             sharedModules = [
               sops-nix.homeManagerModules.sops
