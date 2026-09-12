@@ -29,6 +29,7 @@
   outputs =
     inputs@{
       nix-darwin,
+      nixpkgs,
       home-manager,
       sops-nix,
       ...
@@ -38,32 +39,33 @@
         username = "caelyreth";
         hostname = "Unwritten";
         system = "aarch64-darwin";
+        configurationDirectory = "/etc/nix-darwin";
       };
       palette = import ./home/palette.nix;
     in
     {
+      homeConfigurations.${machine.username} = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${machine.system};
+        extraSpecialArgs = {
+          inherit inputs machine palette;
+        };
+        modules = [
+          sops-nix.homeManagerModules.sops
+          ./home
+          {
+            home = {
+              username = machine.username;
+              homeDirectory = "/Users/${machine.username}";
+            };
+          }
+        ];
+      };
+
       darwinConfigurations.${machine.hostname} = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit machine; };
 
         modules = [
-          # System-wide configuration.
           ./darwin
-
-          # Home Manager configuration.
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs machine palette;
-              };
-              users.${machine.username} = import ./home;
-              sharedModules = [
-                sops-nix.homeManagerModules.sops
-              ];
-            };
-          }
         ];
       };
     };
