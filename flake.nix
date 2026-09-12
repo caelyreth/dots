@@ -39,6 +39,7 @@
         hostname = "Unwritten";
         system = "aarch64-darwin";
       };
+      palette = import ./home/palette.nix;
     in
     {
       darwinConfigurations.${machine.hostname} = nix-darwin.lib.darwinSystem {
@@ -55,7 +56,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit inputs machine;
+                inherit inputs machine palette;
               };
               users.${machine.username} = import ./home;
               sharedModules = [

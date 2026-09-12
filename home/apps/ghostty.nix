@@ -1,5 +1,8 @@
-{ ... }:
+{ lib, palette, ... }:
 
+let
+  hex = lib.removePrefix "#";
+in
 {
   programs.ghostty = {
     enable = true;
@@ -9,6 +12,34 @@
 
     settings = {
       font-family = "Maple Mono NF CN";
+      theme = palette.name;
+    };
+
+    themes.${palette.name} = {
+      background = hex palette.terminal.background;
+      foreground = hex palette.terminal.foreground;
+      cursor-color = hex palette.accent.cursor;
+      cursor-text = hex palette.terminal.background;
+      selection-background = hex palette.ui.selection;
+      selection-foreground = hex palette.text.primary;
+      palette = [
+        "0=${hex palette.terminal.ansi.black}"
+        "1=${hex palette.terminal.ansi.red}"
+        "2=${hex palette.terminal.ansi.green}"
+        "3=${hex palette.terminal.ansi.yellow}"
+        "4=${hex palette.terminal.ansi.blue}"
+        "5=${hex palette.terminal.ansi.magenta}"
+        "6=${hex palette.terminal.ansi.cyan}"
+        "7=${hex palette.terminal.ansi.white}"
+        "8=${hex palette.terminal.ansi.bright.black}"
+        "9=${hex palette.terminal.ansi.bright.red}"
+        "10=${hex palette.terminal.ansi.bright.green}"
+        "11=${hex palette.terminal.ansi.bright.yellow}"
+        "12=${hex palette.terminal.ansi.bright.blue}"
+        "13=${hex palette.terminal.ansi.bright.magenta}"
+        "14=${hex palette.terminal.ansi.bright.cyan}"
+        "15=${hex palette.terminal.ansi.bright.white}"
+      ];
     };
   };
 
