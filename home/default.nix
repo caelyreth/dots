@@ -9,7 +9,6 @@
     ./programs/ssh.nix
     ./programs/env.nix
     ./programs/common.nix
-    ./programs/gh.nix
     ./security/sops.nix
   ];
 

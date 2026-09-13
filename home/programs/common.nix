@@ -5,6 +5,7 @@
     fd.enable = true;
     ripgrep.enable = true;
     jq.enable = true;
+    gh.enable = true;
 
     eza = {
       enable = true;
