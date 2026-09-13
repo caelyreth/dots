@@ -5,8 +5,11 @@
     enable = true;
 
     shellAbbrs = {
+      # habit
       cls = "clear";
+      # tools
       g = "git";
+      ls = "eza";
     };
   };
 
