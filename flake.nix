@@ -41,11 +41,12 @@
         system = "aarch64-darwin";
         configurationDirectory = "/etc/nix-darwin";
       };
-      palette = import ./home/palette.nix;
+      pkgs = nixpkgs.legacyPackages.${machine.system};
+      palette = import ./home/palette.nix { inherit pkgs; };
     in
     {
       homeConfigurations.${machine.username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${machine.system};
+        inherit pkgs;
         extraSpecialArgs = {
           inherit inputs machine palette;
         };

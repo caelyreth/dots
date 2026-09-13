@@ -1,4 +1,6 @@
-{
+{ pkgs }:
+
+rec {
   name = "Eclat";
 
   ui = {
@@ -82,4 +84,42 @@
     number = "#D1A075";
     boolean = "#CE94A7";
   };
+
+  replaceVars =
+    src:
+    let
+      template = builtins.readFile src;
+      replacements = {
+        theme_name = name;
+        background = terminal.background;
+        cursor = accent.cursor;
+        foreground = terminal.foreground;
+        line_highlight = ui.surface;
+        selection = ui.selection;
+        selection_foreground = text.primary;
+        primary = accent.primary;
+        focus = accent.focus;
+        hint = accent.hint;
+        muted = text.muted;
+        bright = text.bright;
+        surface = ui.surface;
+        active = ui.active;
+        border = ui.border;
+        success = status.success;
+        warning = status.warning;
+        error = status.error;
+        info = status.info;
+        syntax_comment = syntax.comment;
+        syntax_keyword = syntax.keyword;
+        syntax_string = syntax.string;
+        syntax_function = syntax.function;
+        syntax_type = syntax.type;
+        syntax_constant = syntax.constant;
+        syntax_number = syntax.number;
+        syntax_boolean = syntax.boolean;
+      };
+    in
+    pkgs.replaceVars src (
+      pkgs.lib.filterAttrs (token: _: pkgs.lib.hasInfix "@${token}@" template) replacements
+    );
 }
