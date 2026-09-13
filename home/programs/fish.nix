@@ -10,6 +10,7 @@
       dots = "/etc/nix-darwin";
       # tools
       g = "git";
+      l = "eza";
       ls = "eza";
       cd = "z";
     };

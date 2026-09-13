@@ -5,6 +5,7 @@
     ./utils.nix
     ./apps/ghostty.nix
     ./apps/zed.nix
+    ./programs/nh.nix
     ./programs/agents.nix
     ./programs/fish.nix
     ./programs/git.nix
