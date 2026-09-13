@@ -47,36 +47,34 @@
       };
     in
     {
-      homeConfigurations.${machine.username} =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+      homeConfigurations.${machine.username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-          extraSpecialArgs = {
-            inherit inputs machine palette;
-          };
-
-          modules = [
-            sops-nix.homeManagerModules.sops
-            ./home
-            {
-              home = {
-                username = machine.username;
-                homeDirectory = "/Users/${machine.username}";
-              };
-            }
-          ];
+        extraSpecialArgs = {
+          inherit inputs machine palette;
         };
 
-      darwinConfigurations.${machine.hostname} =
-        nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit machine;
-          };
+        modules = [
+          sops-nix.homeManagerModules.sops
+          ./home
+          {
+            home = {
+              username = machine.username;
+              homeDirectory = "/Users/${machine.username}";
+            };
+          }
+        ];
+      };
 
-          modules = [
-            ./darwin
-          ];
+      darwinConfigurations.${machine.hostname} = nix-darwin.lib.darwinSystem {
+        specialArgs = {
+          inherit machine;
         };
+
+        modules = [
+          ./darwin
+        ];
+      };
 
       devShells.${machine.system}.default = pkgs.mkShellNoCC {
         packages = [
