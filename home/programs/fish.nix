@@ -7,6 +7,7 @@
     shellAbbrs = {
       # habit
       cls = "clear";
+      dots = "/etc/nix-darwin";
       # tools
       g = "git";
       ls = "eza";

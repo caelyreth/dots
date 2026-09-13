@@ -12,7 +12,7 @@ in
 
     settings = {
       # font
-      font-size = 14;
+      font-size = 14.5;
       font-family = "Maple Mono NF CN";
       # style
       theme = palette.name;
