@@ -7,15 +7,16 @@ function fish_prompt --description 'Two-line colored prompt'
     set -l white   (set_color white)
     set -l yellow  (set_color yellow)
     set -l magenta (set_color magenta)
+    set -l cyan    (set_color cyan)
 
-    # blank line between prompts.
+    # blank line between prompts
     if set -q __prompt_has_run
         echo
     else
         set -g __prompt_has_run 1
     end
 
-    # root prompt handling.
+    # root prompt handling
     set -l color_cwd $fish_color_cwd
     set -l suffix '>'
     if functions -q fish_is_root_user; and fish_is_root_user
@@ -27,7 +28,7 @@ function fish_prompt --description 'Two-line colored prompt'
 
     set -l cwd (set_color $color_cwd)
 
-    # command status / pipestatus.
+    # command status / pipestatus
     set -l bold_flag --bold
     set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
 
@@ -51,14 +52,31 @@ function fish_prompt --description 'Two-line colored prompt'
         command git symbolic-ref --quiet --short HEAD 2>/dev/null
     )
 
-    echo -n "$blue$USER$white @ $yellow"(prompt_hostname)"$reset $cwd"(prompt_pwd)
+    # user
+    echo -n "$blue$USER"
 
+    # only show hostname for remote SSH sessions
+    if set -q SSH_CONNECTION; or set -q SSH_TTY
+        echo -n "$white @ $yellow"(prompt_hostname)
+    end
+
+    # current directory
+    echo -n "$reset $cwd"(prompt_pwd)
+
+    # git branch
     if test -n "$git_branch"
         echo -n " $magenta$git_branch"
     end
 
+    # command status
     if test -n "$prompt_status"
         echo -n "$reset $prompt_status"
+    end
+
+    # active devenv environment
+    if set -q DEVENV_ROOT
+        set -l devenv_name (path basename "$DEVENV_ROOT")
+        echo -n " "$cyan"[dev:$devenv_name]"
     end
 
     echo
