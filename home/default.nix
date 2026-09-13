@@ -1,8 +1,10 @@
-{ config, machine, ... }:
+{ ... }:
 
 {
   imports = [
+    ./utils.nix
     ./apps/ghostty.nix
+    ./apps/zed.nix
     ./programs/agents.nix
     ./programs/fish.nix
     ./programs/git.nix
@@ -11,9 +13,6 @@
     ./programs/common.nix
     ./security/sops.nix
   ];
-
-  xdg.configFile."home-manager/flake.nix".source =
-    config.lib.file.mkOutOfStoreSymlink "${machine.configurationDirectory}/flake.nix";
 
   home.stateVersion = "26.05";
 
