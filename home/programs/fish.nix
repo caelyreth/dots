@@ -15,8 +15,14 @@
     };
   };
 
-  xdg.configFile."fish/functions" = {
-    source = ../../dotfiles/fish/functions;
-    recursive = true;
+  xdg.configFile = {
+    "fish/functions" = {
+      source = ../../dotfiles/fish/functions;
+      recursive = true;
+    };
+    "fish/completions" = {
+      source = ../../dotfiles/fish/completions;
+      recursive = true;
+    };
   };
 }
