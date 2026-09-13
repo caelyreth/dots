@@ -20,6 +20,7 @@ in
       window-padding-y = 4;
       # misc
       working-directory = "home";
+      window-inherit-working-directory = false;
       tab-inherit-working-directory = true;
     };
 
