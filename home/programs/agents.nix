@@ -6,5 +6,7 @@ in
 {
   home.packages = [
     llm.fx
+    llm.codex
+    llm.grok
   ];
 }
