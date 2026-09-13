@@ -9,7 +9,8 @@
 
     eza = {
       enable = true;
-      enableFishIntegration = true;
+      # manually rewrite in functions
+      enableFishIntegration = false;
       icons = "never";
     };
 
