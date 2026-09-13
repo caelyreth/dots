@@ -18,6 +18,9 @@ in
       theme = palette.name;
       window-padding-x = 10;
       window-padding-y = 4;
+      # misc
+      working-directory = "home";
+      tab-inherit-working-directory = true;
     };
 
     themes.${palette.name} = {
