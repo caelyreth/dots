@@ -68,6 +68,15 @@ function fish_prompt --description 'Two-line colored prompt'
         echo -n " $magenta$git_branch"
     end
 
+    # nix shell
+    if set -q IN_NIX_SHELL
+        if set -q DEV_SHELL_NAME
+            printf ' %s[nix:%s]' "$cyan" "$DEV_SHELL_NAME"
+        else
+            printf ' %s[nix]' "$cyan"
+        end
+    end
+
     # command status
     if test -n "$prompt_status"
         echo -n "$reset $prompt_status"
