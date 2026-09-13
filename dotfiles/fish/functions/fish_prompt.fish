@@ -1,7 +1,12 @@
 function fish_prompt --description 'Two-line colored prompt'
     set -l last_pipestatus $pipestatus
     set -lx __fish_last_status $status
-    set -l normal (set_color --reset)
+
+    set -l reset   (set_color normal)
+    set -l blue    (set_color blue)
+    set -l white   (set_color white)
+    set -l yellow  (set_color yellow)
+    set -l magenta (set_color magenta)
 
     # blank line between prompts.
     if set -q __prompt_has_run
@@ -19,6 +24,8 @@ function fish_prompt --description 'Two-line colored prompt'
         end
         set suffix '#'
     end
+
+    set -l cwd (set_color $color_cwd)
 
     # command status / pipestatus.
     set -l bold_flag --bold
@@ -44,41 +51,16 @@ function fish_prompt --description 'Two-line colored prompt'
         command git symbolic-ref --quiet --short HEAD 2>/dev/null
     )
 
-    # username - blue
-    set_color blue
-    echo -n $USER
+    echo -n "$blue$USER$white @ $yellow"(prompt_hostname)"$reset $cwd"(prompt_pwd)
 
-    # @ - dim
-    set_color --dim white
-    echo -n ' @ '
-
-    # hostname
-    set_color normal
-    set_color yellow
-    echo -n (prompt_hostname)
-
-    # path
-    set_color normal
-    echo -n ' '
-    set_color $color_cwd
-    echo -n (prompt_pwd)
-
-    # git branch
     if test -n "$git_branch"
-        set_color normal
-        echo -n ' '
-        set_color magenta
-        echo -n $git_branch
+        echo -n " $magenta$git_branch"
     end
 
-    # status
-    set_color normal
     if test -n "$prompt_status"
-        echo -n -s ' ' $prompt_status
+        echo -n "$reset $prompt_status"
     end
 
-    # second line
     echo
-    set_color normal
-    echo -n "$suffix "
+    echo -n "$reset$suffix "
 end
