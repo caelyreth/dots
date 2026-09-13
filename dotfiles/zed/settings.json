@@ -3,8 +3,16 @@
   "disable_ai": true,
   // font
   "ui_font_size": 16,
+  "ui_font_family": "Noto Serif CJK SC",
   "buffer_font_size": 15,
+  "buffer_font_family": "Maple Mono NF CN",
+  "buffer_font_weight": 300,
   "theme": "Eclat Nocturne",
+  // terminal
+  "terminal": {
+    "font_size": 14.5,
+    "cursor_shape": "bar",
+  },
   // disable the annoying
   "git": {
     "inline_blame": {
