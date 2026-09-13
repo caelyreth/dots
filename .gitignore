@@ -1,2 +1,5 @@
+# dev
+/.direnv
+
 # os
 .DS_Store
