@@ -10,6 +10,7 @@
       # tools
       g = "git";
       ls = "eza";
+      cd = "z";
     };
   };
 
