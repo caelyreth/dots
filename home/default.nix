@@ -7,7 +7,7 @@
     ./programs/fish.nix
     ./programs/git.nix
     ./programs/ssh.nix
-    ./programs/devenv.nix
+    ./programs/direnv.nix
     ./programs/common.nix
     ./security/sops.nix
   ];

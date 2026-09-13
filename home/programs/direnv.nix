@@ -12,8 +12,4 @@
       };
     };
   };
-
-  programs.devenv = {
-    enable = true;
-  };
 }

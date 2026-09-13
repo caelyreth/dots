@@ -73,12 +73,6 @@ function fish_prompt --description 'Two-line colored prompt'
         echo -n "$reset $prompt_status"
     end
 
-    # active devenv environment
-    if set -q DEVENV_ROOT
-        set -l devenv_name (path basename "$DEVENV_ROOT")
-        echo -n " "$cyan"[dev:$devenv_name]"
-    end
-
     echo
     echo -n "$reset$suffix "
 end
