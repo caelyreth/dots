@@ -8,7 +8,7 @@
     ./programs/git.nix
     ./programs/ssh.nix
     ./programs/devenv.nix
-    ./programs/tools.nix
+    ./programs/common.nix
     ./security/sops.nix
   ];
 
