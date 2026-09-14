@@ -1,0 +1,3 @@
+[
+  (import ./macmon.nix)
+]

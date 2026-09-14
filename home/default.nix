@@ -20,6 +20,7 @@
     stateVersion = "26.05";
     packages = [
       pkgs.typst
+      pkgs.macmon
     ];
   };
 

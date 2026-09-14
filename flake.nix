@@ -38,7 +38,10 @@
         configurationDirectory = "/etc/nix-darwin";
       };
 
+      overlays = import ./overlays;
+
       pkgs = import nixpkgs {
+        inherit overlays;
         system = machine.system;
       };
 
