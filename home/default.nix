@@ -12,6 +12,7 @@
     ./programs/ssh.nix
     ./programs/env.nix
     ./programs/common.nix
+    ./programs/uv.nix
     ./security/sops.nix
   ];
 
