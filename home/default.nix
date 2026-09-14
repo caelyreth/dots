@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -15,7 +15,12 @@
     ./security/sops.nix
   ];
 
-  home.stateVersion = "26.05";
+  home = {
+    stateVersion = "26.05";
+    packages = [
+      pkgs.typst
+    ];
+  };
 
   programs = {
     home-manager.enable = true;
