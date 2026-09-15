@@ -21,6 +21,7 @@
     packages = [
       pkgs.typst
       pkgs.macmon
+      pkgs.tokei
     ];
   };
 
