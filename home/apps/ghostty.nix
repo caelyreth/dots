@@ -20,6 +20,8 @@ in
       window-padding-y = 4;
       # misc
       working-directory = "home";
+      window-width = 80;
+      window-height = 26;
       window-inherit-working-directory = false;
       tab-inherit-working-directory = true;
     };
