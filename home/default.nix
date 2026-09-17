@@ -22,6 +22,7 @@
       pkgs.typst
       pkgs.macmon
       pkgs.tokei
+      pkgs.addlicense
     ];
   };
 
