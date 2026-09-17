@@ -8,5 +8,6 @@ in
     llm.fx
     llm.codex
     llm.grok
+    llm.dsh
   ];
 }
