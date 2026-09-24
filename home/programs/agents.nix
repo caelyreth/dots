@@ -9,6 +9,5 @@ in
     llm.codex
     llm.grok
     llm.dsh
-    llm.kilocode-cli
   ];
 }
