@@ -10,6 +10,7 @@
   "theme": "Eclat Nocturne",
   // terminal
   "terminal": {
+    "shell": "system",
     "font_size": 14.5,
     "cursor_shape": "bar",
   },

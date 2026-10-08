@@ -23,6 +23,7 @@
       pkgs.macmon
       pkgs.tokei
       pkgs.addlicense
+      pkgs.yt-dlp
     ];
   };
 
