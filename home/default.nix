@@ -24,6 +24,7 @@
       pkgs.tokei
       pkgs.addlicense
       pkgs.yt-dlp
+      pkgs.ouch
     ];
   };
 
