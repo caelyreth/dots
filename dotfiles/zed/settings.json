@@ -1,5 +1,6 @@
 {
   // keep plain
+  "diff_view_style": "unified",
   "disable_ai": true,
   // font
   "ui_font_size": 16,
